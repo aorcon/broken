@@ -1,0 +1,52 @@
+{
+  "name": "coacher",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./dist/bin/www.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Huang Libo",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.3.0",
+    "typescript": "^2.2.2",
+    "tsify": "^3.0.1",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "gulp": "^3.9.1",
+    "watchify": "^3.9.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^2.1.2",
+    "gulp-typescript": "^3.1.6",
+    "underscore": "^1.8.3",
+    "debug": "^2.6.3",
+    "ejs": "~2.3.3",
+    "pug": "^2.0.0-beta.12",
+    "nunjucks": "^3.0.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.1",
+    "koa-onerror": "^1.2.1",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.1",
+    "koa-session": "5.0.0",
+    "vinyl-transform": "^1.0.0",
+    "glob": "^7.1.1",
+    "gulp-merge": "^0.1.1",
+    "koa2-file-upload": "^0.1.15",
+    "config": "^1.25.1",
+    "del": "^2.2.2",
+    "mongodb": "^2.2.26"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://addler@li1559-71.members.linode.com/addler/coacher.git"
+  },
+  "dependencies": {
+    "parsleyjs": "^2.7.2"
+  }
+}

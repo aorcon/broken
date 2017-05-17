@@ -1,0 +1,53 @@
+{% extends '_index.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+        <div class="uk-position-center" style="width: 350px;">
+
+            <form id="login_form" action="login" method="POST" class="uk-card uk-card-default uk-card-body uk-border-rounded uk-padding-top">
+                <fieldset class="uk-fieldset uk-width-4-5 uk-margin-auto">
+                    <legend class="uk-legend uk-margin-auto">
+                        <span>登录</span>
+                    </legend>
+                    <div class="uk-margin-small uk-inline uk-width-1-1">
+                        <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                        <input class="uk-input" type="text" name="mobile" placeholder="请输入手机号" {% if lum %}value="{{ lum }}"{% endif %}>
+                    </div>
+                    <div class="uk-margin-small uk-inline uk-width-1-1">
+                        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                        <input class="uk-input" type="password"  name="passwd" placeholder="请输入登录密码">
+                    </div>
+                    <div class="uk-margin-small uk-inline uk-width-1-1 uk-clearfix">
+                        <a id="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-small" href="javascript:;">登录</a>
+                        <label class="uk-float-left"><input type="checkbox" name="lum" {% if lum %}checked{% endif %} value="lum"> 记住我</label>
+                        <a class="uk-float-right uk-link uk-link-muted" href="#">忘记密码?</a>
+                    </div>
+                    <input type="hidden"  name="redirect" value="{{ redirect }}">
+                </fieldset>
+            </form>
+
+        </div>
+
+{% endblock %}
+
+{% block endjs %}
+    <script type="text/javascript">
+    ji.use(function(){
+        return ["listener", "#submit", "click", function(){
+            $('#login_form').submit();
+        }];
+    });
+    ji.use(function(){
+        return ["listener", "input[name=passwd]", "keypress", function(event){
+            if (event.which == 13){
+                $('#login_form').submit();                
+            };
+        }];
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" class="uk-height-1-1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="apple-touch-icon" href="/i/icon/logo_144x144.png">
+    <link rel="mask-icon" sizes="any"
+        href="/i/icon/logo.svg" color="#bd081c">
+    <link rel="icon" href="/i/icon/logo_32x32.png">
+    <title>{% block title %}<!-- title -->{% endblock %}</title>
+    <meta content="" name="">
+    <script type="text/javascript" src="/j/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/j/uikit.min.js"></script>
+    <script type="text/javascript" src="/j/uikit-icons.min.js"></script>
+    <script type="text/javascript" src="/j/validator.min.js"></script>
+    <script type="text/javascript" src="/j/ji-fire.js"></script>    
+    <link rel="stylesheet" href="/c/base.css">
+    <link rel="stylesheet" href="/c/uikit.min.css">
+{% block head %}<!-- block head  -->{% endblock %}
+</head>
+<body class="uk-height-1-1">
+    <div class="uk-height-1-1 ji-page-area">
+{% block body %}<!-- block head  -->{% endblock %}  
+    </div>
+{% block endjs %}<!-- block endjs -->{% endblock %}
+</body>
+</html>
+<!DOCTYPE html>
+

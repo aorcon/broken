@@ -1,0 +1,93 @@
+{% extends 'admin/_admin.html' %}
+
+{% block title %}会员管理系统-添加用户{% endblock %}
+
+{% block content %}
+<!--
+    // mobile: string; //uniq
+    // name: string;
+    // cname: string;
+    // password: string;
+    // role: Admin | Staff;
+-->
+        <h1 id="search" class="uk-h1 tm-heading-fragment">新增用户</h1>
+        <form id="add_form" action="user/add" method="POST" class="ji-form">
+            <div class="uk-grid-small ji-grid" uk-grid>
+                <span class="uk-text-middle uk-width-1-4">手机号*</span>
+                <input class="uk-input uk-width-3-4" name="mobile" type="text" placeholder="请输入手机号">
+                <span class="uk-text-middle uk-width-1-4">姓名*</span>
+                <input class="uk-input uk-width-3-4" name="cname" type="text" placeholder="请输入真实姓名">
+                <span class="uk-text-middle uk-width-1-4">邮箱/账号</span>
+                <input class="uk-input uk-width-3-4" name="name" type="text" placeholder="请输入邮箱/账号">
+            </div>
+            <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+                <label class="uk-width-1-4"><input class="uk-radio" type="radio" name="role" value="staff" checked>员工</label>
+                <label class="uk-width-1-4"><input class="uk-radio" type="radio" name="role" value="admin">管理员</label>
+                <label class="uk-width-1-4"><input class="uk-radio uk-disabled" type="radio" name="role" value="partner" disabled>合作伙伴</label>
+            </div>
+            <div class="uk-width-1-1">
+                <div id="test" class="uk-card uk-card-default uk-card-body uk-card-small uk-width-1-2">
+                    <div class="uk-grid-small ji-grid" uk-grid>
+                        <span class="uk-width-1-3">职位</span>
+                        <input class="uk-input uk-width-2-3" name="position" type="text" placeholder="请输入职位">
+                    </div>                            
+                    <div>
+                        {% for store in stores %}
+                        <label><input class="uk-checkbox" type="checkbox" name="store" value="{{ store.id }}">{{ store.cname }}</label>
+                        <label><input class="uk-checkbox" type="checkbox" name="storeManager" value="{{ store.id }}">{{ store.managed }}</label>                                
+                        {% endfor %}
+                    </div>                            
+                </div>
+            </div>
+            <div class="uk-width-1-1">
+                <button id="submit_b" type="button" class="uk-button uk-button-default uk-border-rounded">提交</button>
+            </div>
+
+        </form>
+{% endblock %}
+
+{% block endjs %}
+<script type="text/javascript">
+    console.log('start using');
+    ji.use(function(){
+        return ["listener", "#add_form input[name=role]", "change", function(){
+            if (this.value == 'staff'){
+                $("#test").removeClass('uk-hidden');
+            }else{
+                $("#test").addClass('uk-hidden');
+            }
+        }];
+    });
+    ji.use(function(){
+        return ["listener", "#add_form #submit_b", "click", function(){
+            let mobile = $('#add_form input[name=mobile]').val();
+            let cname = $('#add_form input[name=cname]').val();
+            let name = $('#add_form input[name=name]').val();
+            let rolename = $('#add_form input[name=role]:checked').val();
+            let role = {
+                
+            }
+            if (rolename === 'staff'){
+
+            }
+            let data = {
+                mobile: mobile,
+                cname: cname,
+                name: name,
+                role: role
+            }
+
+            console.log(data);
+            // $.ajax({
+            //     url:"/admin/user/add",
+            //     method:"post",
+            //     data:{}
+            // }).done(function(msg){
+
+
+            // }).fail(function(){                
+            // })
+        }];
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'admin/_admin.html' %}
+
+{% block title %}会员管理系统-我的信息{% endblock %}
+
+{% block content %}
+        <h1 class="uk-h1"><img class="uk-border-circle" src="images/avatar.jpg" width="200" height="200" alt="头像">{{ u.cname }}</h1>
+        <div>
+            <span>{{ u.mobile }}</span>
+        </div>
+        <div>
+            <span>{{ u.name }}</span>
+        </div>
+        <div>
+            <span>{{ u.role.rolename }}</span>
+        </div>
+        <% if (u.role.rolename == 'staff') %>
+            <div>
+                <span>Staff</span>
+            </div>        
+        <% endif %>
+
+{% endblock %}

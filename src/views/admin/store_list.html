@@ -1,0 +1,48 @@
+{% extends 'admin/_admin.html' %}
+
+{% block title %}会员管理系统-门店管理{% endblock %}
+
+{% block content %}
+        <div class="uk-clearfix">
+            <div class="uk-h2 uk-heading-bullet uk-float-left">门店</div>
+            <div class="uk-float-right ji-search-small">
+                <form class="uk-search uk-search-default">
+                    <span uk-search-icon></span>
+                    <input class="uk-search-input" type="search" placeholder="搜索门店">
+                </form>
+                <a href="/admin/store/add" class="uk-panel uk-button uk-button-default uk-button-small uk-border-rounded">增加门店</a>
+            </div>
+        </div>
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>所在的</th>
+                    <th>店长</th>
+                    <th>驻场私教</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for store in list %}
+                <tr>
+                    <td>{{ store.cname }}</td>
+                    <td>{{ store.mobile }}</td>
+                    {% if store.manager %}
+                    <td>{{ store.manager[1] }}</td>
+                    {% else %}
+                    <td>{{ "&nbsp;" }}</td>
+                    {% endif %}
+                    <td>{{ "TODO" }}</td>
+                    <td>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">设置密码</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">锁定</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">编辑</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">删除</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">备注</a>
+                    </td>
+
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

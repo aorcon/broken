@@ -1,0 +1,32 @@
+@media (min-width: 1600px){
+    #ji-page-area{
+        width: 1200px;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1600px) {
+    #ji-page-area{
+        width: 1200px;
+    }
+}
+@media (min-width: 960px) and (max-width: 1200px) {
+    #ji-page-area{
+        width: 960px;
+    }
+}
+@media (min-width: 640px) and (max-width: 960px) {
+    #ji-page-area{
+        width: 600px;
+    }
+}
+@media (max-width: 640px) {
+    #ji-page-area{
+        width: 100%;
+    }
+}
+#ji-page-area{
+    margin: 0 auto 0 auto;
+    padding: 0;
+}
+.ji-search-small .uk-search .uk-search-input{
+    height: 30px;
+}

@@ -1,0 +1,44 @@
+{% extends 'admin/_admin.html' %}
+
+{% block title %}会员管理系统-系统用户管理{% endblock %}
+
+{% block content %}
+        <div class="uk-clearfix">
+            <div class="uk-h2 uk-heading-bullet uk-float-left">用户</div>
+            <div class="uk-float-right ji-search-small">
+                <form class="uk-search uk-search-default">
+                    <span uk-search-icon></span>
+                    <input class="uk-search-input" type="search" placeholder="搜索用户">
+                </form>
+                <a href="/admin/user/add" class="uk-panel uk-button uk-button-default uk-button-small uk-border-rounded">增加用户</a>
+            </div>
+        </div>
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>账号/邮箱</th>
+                    <th>手机号</th>
+                    <th>姓名</th>
+                    <th>权限</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for account in list %}
+                <tr>
+                    <td>{{ account.name }}</td>
+                    <td>{{ account.mobile }}</td>
+                    <td>{{ account.cname }}</td>
+                    <td>{{ "TODO" }}</td>
+                    <td>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">设置密码</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">锁定</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">编辑</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">删除</a>
+                        <a href="javascript:;" class="uk-button uk-button-default uk-button-small uk-border-rounded">备注</a>
+                    </td>
+
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

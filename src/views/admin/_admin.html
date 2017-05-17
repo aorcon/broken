@@ -1,0 +1,135 @@
+{% extends '_index.html' %}
+
+{% block title %}会员管理系统-系统用户管理{% endblock %}
+
+{% block head %}
+    <script src="/j/parsley.min.js"></script>
+    <script src="/j/parsley.zh_cn.js"></script>
+
+    <link rel="stylesheet" href="/c/admin.css">
+{% endblock %}
+
+
+{% block body %}
+        <div class="uk-offcanvas-content">
+            <div id="navbar" class="ji-navbar-container uk-navbar-container uk-background-primary uk-navbar-transparent uk-light" uk-sticky="media: 960">
+                <div class="uk-container uk-container-expand">
+                    <nav class=""  uk-navbar="boundary-align: true; align: right;">    
+                        <div class="uk-navbar-left">
+                            <a href="javascript:;" class="uk-navbar-item uk-logo">
+                                <img src="/i/icon/logo1.png" class="uk-margin-small-right">
+                                &nbsp;&nbsp;会员管理系统
+                            </a>
+                        </div>
+                        <div class="uk-navbar-right">
+                            <div class="uk-navbar-item uk-visible@m">
+                                <form class="uk-search uk-search-navbar">
+                                    <span uk-search-icon></span>
+                                    <input class="uk-search-input" type="search" placeholder="Search...">
+                                </form>
+                            </div>
+                            <ul class="uk-navbar-nav uk-visible@m">
+                                <li>
+                                    <a href="javascript:;" class="">Hero</a>
+                                </li>
+                                <li class="uk-active">
+                                    <a href="javascript:;" class="">Manage</a>
+                                </li>
+                                <li class="uk-active">
+                                    <a href="javascript:;" class="">{{ session.user.cname }}</a>
+                                    <div class="uk-navbar-dropdown">
+                                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                                            <li class="uk-active"><a href="/user">我的信息</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li class="uk-nav-header">Header</li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li class="uk-nav-divider"></li>
+                                            <li class="uk-active"><a href="#" id="logout">注销</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="#offcanvas" uk-toggle class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon></a>
+                        </div>
+                        <div class="uk-sticky-placeholder" style="height: 80px; margin: 0px;" hidden="hidden"></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="ji-content-container">
+                <div class="uk-container uk-container-expand">
+                        <div class="ji-sidebar uk-visible@m">
+        {% for menu in sidebar.menu %}
+            {% if menu.type == "H3" %}
+                            <h3>{{ menu.title }}</h3>
+            {% endif %}
+            {% if menu.type == "group" %}
+                            <ul class="uk-nav uk-nav-default">
+                {% for mmenu in menu.menu %}
+                    {% if mmenu.type == "Header" %}
+                                <li class="uk-nav-header">{{ mmenu.title }}</li>
+                    {% endif %}
+                    {% if mmenu.type == "menu" %}
+                                <li><a href="{{ mmenu.href }}" class="ji-sidebar-menu">{{ mmenu.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                            </ul>
+            {% endif %}
+        {% endfor %}
+                        </div>
+                        <div class="ji-main uk-section uk-section-default">
+                            <div class="uk-container uk-container-small uk-position-relative">
+                                <div class="uk-container">
+{% block content %}
+                                    <h3>Section</h3>
+
+                                    <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                                        </div>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                                        </div>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                                        </div>
+                                    </div>
+{% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="offcanvas" uk-offcanvas>
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-push">
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+                <div class="uk-panel">
+                    <ul class="uk-nav uk-nav-default tm-nav">
+                        <li class="uk-nav-header">General</li> 
+                        <li><a href="../index">Home</a></li> 
+                        <li><a href="../pro">Pro</a></li> 
+                        <li><a href="../changelog">Changelog</a></li> 
+                        <li><a href="../download">Download</a></li>
+                    </ul> 
+                    <ul class="uk-nav uk-nav-default tm-nav uk-margin-top">
+                        <li class="uk-nav-header">Getting started</li> 
+                        <li exact=""><a href="./introduction">Introduction</a></li>
+                        <li exact=""><a href="./installation">Installation</a></li>
+                        <li exact=""><a href="./less">Less</a></li>
+                        <li exact=""><a href="./sass">Sass</a></li>
+                        <li exact=""><a href="./javascript">JavaScript</a></li>
+                        <li exact=""><a href="./webpack">Webpack</a></li>
+                        <li exact=""><a href="./custom-icons">Custom icons</a></li>
+                        <li exact=""><a href="./avoiding-conflicts">Avoiding conflicts</a></li>
+                        <li exact=""><a href="./rtl">RTL support</a></li>
+                        <li exact=""><a href="./migration">Migration</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block endjs %}
+{% endblock %}

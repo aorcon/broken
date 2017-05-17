@@ -1,0 +1,28 @@
+<div>
+    <div class="uk-child-width-1-2 uk-text-center" uk-grid>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">Item</div>
+        </div>
+        <div>
+            <div class="uk-child-width-1-2 uk-text-center" uk-grid>
+                <div>
+                    <div id="first_i" class="uk-card uk-card-primary uk-card-body">Item</div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-primary uk-card-body">Item</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function toggle(){
+        console.log("hello source");
+        if ($('#first_i').hasClass('uk-card-primary')){
+            $('#first_i').removeClass('uk-card-primary');
+        }else{
+            $('#first_i').addClass('uk-card-primary');            
+        }
+    }
+</script>
+

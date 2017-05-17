@@ -1,0 +1,109 @@
+{% extends 'admin/_admin.html' %}
+
+{% block title %}会员管理系统-添加门店{% endblock %}
+
+{% block content %}
+        <div id="message">
+        </div>
+        <h1 id="search" class="uk-h1 tm-heading-fragment">新增门店</h1>
+        <form id="add_form" action="store/add" method="POST" class="ji-form">
+            <div class="uk-grid-small ji-grid" uk-grid>
+                <span class="uk-text-middle uk-width-1-4">门店名称*</span>
+                <input class="uk-input uk-width-3-4" name="cname" type="text" placeholder="请输入门店名称">
+                <span class="uk-text-middle uk-width-1-4">门店编码*</span>
+                <input class="uk-input uk-width-3-4" name="name" type="text" placeholder="请输入门店编码">
+                <span class="uk-text-middle uk-width-1-4">联系电话</span>
+                <input class="uk-input uk-width-3-4" name="tel" type="text" placeholder="请输入门店联系电话">
+                <span class="uk-text-middle uk-width-1-4">门店地址</span>
+                <input class="uk-input uk-width-3-4" name="address" type="text" placeholder="请输入门店地址">
+                <span class="uk-text-middle uk-width-1-4">门店坐标</span>
+                <div class="uk-width-3-4 ji-grid-subpatch">
+                    <div class="uk-grid-small" uk-grid>
+                        <input class="uk-input uk-width-1-2" name="location-lo" type="text" placeholder="longitude">
+                        <input class="uk-input uk-width-1-2" name="location-la" type="text" placeholder="latitude">
+                    </div>
+                </div>
+                <span class="uk-text-middle uk-width-1-4">门店别名</span>
+                <input class="uk-input uk-width-3-4" name="alias" type="text" placeholder="别名">
+            </div>
+            <div class="uk-width-1-1">
+                <button id="submit_b" type="button" class="uk-button uk-button-default uk-border-rounded">提交</button>
+            </div>
+        </form>
+        <div>
+            <button id="useit" type="button" class="uk-button uk-button-default uk-border-rounded">Load</button>
+            <button id="clickit" type="button" class="uk-button uk-button-default uk-border-rounded">Load</button>
+        </div>
+        <div id="abcd">
+        </div>
+{% endblock %}
+
+{% block endjs %}
+<style type="text/css">
+.ji-grid-subpatch .uk-width-1-2:nth-child(2){
+    padding-left: 0;
+}
+</style>
+
+<script type="text/javascript">
+    let store_add_validation = function(){
+        var instance = $('#add_form').parsley();
+        $('#add_form input[name=cname]').attr('data-parsley-required', "true");
+        $('#add_form input[name=cname]').attr('data-parsley-length', "[2, 40]");
+        console.log(instance);
+        console.log(instance.isValid());
+        instance.validate();
+    }
+    ji.use(function(){
+        return ["listener", "#add_form #submit_b", "click", function(){
+            let cname = $('#add_form input[name=cname]').val();
+            let name = $('#add_form input[name=name]').val();
+            let tel = $('#add_form input[name=tel]').val();
+            let address = $('#add_form input[name=address]').val();
+            let location = $('#add_form input[name=location]').val();
+            let alias = $('#add_form input[name=alias]').val();
+            let data = {
+                cname: cname,
+                name: name,
+                tel: tel,
+                address: address,
+                location: location,
+                alias: alias,
+            }
+            ji.setData(data);
+            let v = {ok:1, n:1};
+            (function(response){
+                if (response.ok && response.n == 1){
+
+                }
+            })(v);
+            // ji.fetch("/admin/store/add", data).then(function(response){
+            //     if (response.ok && response.n == 1){
+            //         console.log(response);
+            //     }
+            // }).catch(function(error){
+            //     console.log(error);
+            // });
+        }];
+    })
+    ji.use(function(){
+        return ["listener", "#useit", "click", function(){
+            UIkit.alert("#message", {
+                animation:true,
+                duration:350,
+                close:".uk-alert-close"
+            });
+            // UIkit.modal.confirm('UIkit confirm!').then(function() {
+            //     console.log('Confirmed.')
+            // }, function () {
+            //     console.log('Rejected.')
+            // });
+        }]
+    })
+    ji.use(function(){
+        return ["listener", "#clickit", "click", function(){
+            store_add_validation();
+        }]
+    })
+</script>
+{% endblock %}

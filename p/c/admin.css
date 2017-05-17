@@ -1,0 +1,48 @@
+
+.uk-navbar-container .uk-navbar-nav>li>a::before {
+     content: ''; 
+     display: block; 
+     position: absolute; 
+     left: 15px; 
+     right: calc(102% - 15px); 
+     bottom: 20px; 
+     height: 1px; 
+     background-color: currentColor; 
+     -webkit-transition: .3s ease-in-out; 
+     transition: .3s ease-in-out; 
+     -webkit-transition-property: right; 
+     transition-property: right; 
+}
+.ji-navbar-container.uk-navbar-container .uk-navbar-nav>li>a:hover::before {
+    right: 15px;
+}
+.ji-navbar-container.uk-navbar-container .uk-navbar-nav>li>a {
+    position: relative;
+    height: 70px;
+    font-size: 13px;
+}
+.ji-navbar-container .uk-search-navbar .uk-search-input {
+    height: 30px;
+    background: 0 0;
+    font-size: 1.2rem;
+    width: 200px;
+}
+.ji-navbar-container .uk-search-navbar {
+    width: 200px;
+}
+.ji-sidebar{
+    position: fixed;
+    top: 80px;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 240px !important;
+    padding: 40px 40px 60px 40px;
+    border-right: 1px #e5e5e5 solid;
+    overflow: auto;
+}
+.ji-main .uk-container-small {
+    max-width: 650px;
+}
+.ji-form .ji-grid span{
+    line-height: 38px;
+}
