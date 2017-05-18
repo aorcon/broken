@@ -1,3 +1,6 @@
+/**
+ *  首页、登录页
+ */
 var router = require('koa-router')();
 
 const Account = require('../models/account');

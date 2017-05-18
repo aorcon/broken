@@ -30,11 +30,11 @@ class OpLogs{
         }
         return ops;
     }
-    async saveOp(type, user, ori, action, result){
+    async saveOp(type, operater, ori, action, result){
         return await this.create(
             {
                 type: type.toLowerCase(),
-                user: user,
+                operater: operater,
                 ori: ori,
                 date: new Date(),
                 action: action,

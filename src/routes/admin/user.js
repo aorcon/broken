@@ -1,3 +1,6 @@
+/**
+ *  用户管理
+ */
 const router = require('koa-router')();
 const f = require('../../common/function');
 const Account = require('../../models/account');

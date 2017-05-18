@@ -35,14 +35,56 @@
     top: 80px;
     bottom: 0;
     box-sizing: border-box;
-    width: 240px !important;
+    width: 241px !important;
     padding: 40px 40px 60px 40px;
     border-right: 1px #e5e5e5 solid;
     overflow: auto;
 }
-.ji-main .uk-container-small {
-    max-width: 650px;
-}
 .ji-form .ji-grid span{
     line-height: 38px;
+}
+
+.ji-main{
+    padding: 20px 20px 20px 20px;
+}
+@media (min-width: 640px){
+    .ji-main{
+        padding: 20px 40px 20px 40px;
+    }
+}
+@media (min-width: 960px){
+    .ji-main{
+        padding: 20px 40px 20px 280px;
+    }
+}
+.ji-contain-thim{
+    max-width: 650px;
+    margin: auto;
+}
+.ji-check{
+    width: 24px;
+    height: 24px;
+    border-radius: 500px;
+    vertical-align: middle;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.ji-red{
+    color: crimson;
+    border: 1px solid crimson;
+}
+.ji-green{
+    color:#60cc60;
+    border: 1px solid #60cc60;
+}
+.parsley-errors-list li{
+    color: #dd3060;
+    list-style: none;
 }

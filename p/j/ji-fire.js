@@ -1,9 +1,9 @@
 var ji;
-console.log('in');
 (function(){
 
     __ji = function(){
         this.works = [];
+        this.store = {};
     }
     __ji.prototype.use = function(f){
         if (typeof f === 'function') this.works.push(f);
@@ -13,6 +13,12 @@ console.log('in');
     }
     __ji.prototype.getData = function(){
         return this.data;
+    }
+    __ji.prototype.set = function(key, value){
+        this.store[key] = value;
+    }
+    __ji.prototype.get = function(key){
+        return this.store[key];
     }
     __ji.prototype.getwork = function(){
         if (this.works.length > 0){
@@ -53,10 +59,12 @@ console.log('in');
 	    })
         query.body = JSON.stringify(data);
         return fetch(url, query).then(function(response){
-            if (response.ok){
-                return response.json();
-            }
-            throw {name:'' + response.status, message:response.statusText};
+            return response.json().then(function(response){
+                if (response.code == "200"){
+                    return response.result;
+                }
+                throw {name:'' + response.status, message:response.statusText};
+            });
         });
     }
     __ji.prototype.load = function(url, data, query){
@@ -78,9 +86,7 @@ console.log('in');
     }
     ji = new __ji();
     $(document).ready(function(){
-        console.log("on ready");
         for(;;){
-            console.log("start to work");
             var work = ji.getwork();
             if (Array.isArray(work)){
                 if (work[0] == "listener"){

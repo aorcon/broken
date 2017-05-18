@@ -1,3 +1,6 @@
+/**
+ *  极健身会员管理系统
+ */
 var router = require('koa-router')();
 var f = require('../common/function');
 

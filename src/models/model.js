@@ -123,26 +123,26 @@ class Model {
         }
         return ops;
     }
-    async createWithLogs(data, user){
+    async createWithLogs(data, operater){
         const oplogs = new OpLogs();
         let result = await this.create(data);
-        let r = await oplogs.saveOp('create', user, undefined, data, result);
+        let r = await oplogs.saveOp('create', operater, undefined, data, result);
         return result;
     }
-    async updateWithLogs(data, user){
+    async updateWithLogs(data, operater){
         const oplogs = new OpLogs();
         let ori = null;
         if (data._id){ ori = await this.readOne({_id:data._id}); }
         let result = await this.create(data);
-        let r = await oplogs.saveOp('update', user, undefined, data, result);
+        let r = await oplogs.saveOp('update', operater, undefined, data, result);
         return result;
     }
-    async deleteWithLogs(data, user){
+    async deleteWithLogs(data, operater){
         const oplogs = new OpLogs();
         let ori = null;
         if (data._id){ ori = await this.readOne({_id:data._id}); }
         let result = await this.create(data);
-        let r = await oplogs.saveOp('delete', user, ori, data, result);
+        let r = await oplogs.saveOp('delete', operater, ori, data, result);
         return result;
     }
 }

@@ -1,30 +1,31 @@
-{% extends 'admin/_admin.html' %}
+{% extends 'admin/_admin-t.html' %}
 
 {% block title %}会员管理系统-添加门店{% endblock %}
 
-{% block content %}
+{% block contentThim %}
         <div id="message">
         </div>
-        <h1 id="search" class="uk-h1 tm-heading-fragment">新增门店</h1>
+        <h2 id="search" class="uk-h2 tm-heading-fragment">新增门店</h2>
+        
         <form id="add_form" action="store/add" method="POST" class="ji-form">
-            <div class="uk-grid-small ji-grid" uk-grid>
+            <div class="uk-grid-small ji-grid uk-flex-middle" uk-grid>
                 <span class="uk-text-middle uk-width-1-4">门店名称*</span>
-                <input class="uk-input uk-width-3-4" name="cname" type="text" placeholder="请输入门店名称">
+                <input class="uk-input uk-width-2-3" name="cname" type="text" placeholder="请输入门店名称">
                 <span class="uk-text-middle uk-width-1-4">门店编码*</span>
-                <input class="uk-input uk-width-3-4" name="name" type="text" placeholder="请输入门店编码">
+                <input class="uk-input uk-width-2-3" name="name" type="text" placeholder="请输入门店编码">
                 <span class="uk-text-middle uk-width-1-4">联系电话</span>
-                <input class="uk-input uk-width-3-4" name="tel" type="text" placeholder="请输入门店联系电话">
+                <input class="uk-input uk-width-2-3" name="tel" type="text" placeholder="请输入门店联系电话">
                 <span class="uk-text-middle uk-width-1-4">门店地址</span>
-                <input class="uk-input uk-width-3-4" name="address" type="text" placeholder="请输入门店地址">
+                <input class="uk-input uk-width-2-3" name="address" type="text" placeholder="请输入门店地址">
                 <span class="uk-text-middle uk-width-1-4">门店坐标</span>
-                <div class="uk-width-3-4 ji-grid-subpatch">
+                <div class="uk-width-2-3 ji-grid-subpatch">
                     <div class="uk-grid-small" uk-grid>
                         <input class="uk-input uk-width-1-2" name="location-lo" type="text" placeholder="longitude">
                         <input class="uk-input uk-width-1-2" name="location-la" type="text" placeholder="latitude">
                     </div>
                 </div>
                 <span class="uk-text-middle uk-width-1-4">门店别名</span>
-                <input class="uk-input uk-width-3-4" name="alias" type="text" placeholder="别名">
+                <input class="uk-input uk-width-2-3" name="alias" type="text" placeholder="别名">
             </div>
             <div class="uk-width-1-1">
                 <button id="submit_b" type="button" class="uk-button uk-button-default uk-border-rounded">提交</button>
@@ -47,13 +48,34 @@
 
 <script type="text/javascript">
     let store_add_validation = function(){
-        var instance = $('#add_form').parsley();
+        var instance = $('#add_form').parsley({errorsWrapper: '\<ul class="parsley-errors-list uk-width-1-1">\</ul>'});
         $('#add_form input[name=cname]').attr('data-parsley-required', "true");
         $('#add_form input[name=cname]').attr('data-parsley-length', "[2, 40]");
-        console.log(instance);
-        console.log(instance.isValid());
-        instance.validate();
+        $('#add_form input[name=name]').attr('data-parsley-required', "true");
+        return instance.validate();
     }
+    ji.use(function(){
+        return ["listener", "#add_form input[name=name]", "blur", function(){
+            let name = $('#add_form input[name=name]').val();
+            let data = {name, name};
+            let length = name.length;
+            if ((length >= 2) && (length <=40)){
+                ji.fetch("/admin/store/checkname", data).then( (response) => {
+                    $('#add_form input[name=name] + div').remove();
+                    if (response.result == "exist"){
+                        $('#add_form input[name=name]').after('\<div>\<span class="ji-check ji-red" uk-icon="icon: close">\</span>\</div>');
+                    }else{
+                        $('#add_form input[name=name]').after('\<div>\<span class="ji-check ji-green" uk-icon="icon: check">\</span>\</div>');
+                    }
+                }).catch( (error) => {
+                    console.log(error)
+                });
+            }else{
+                $('#add_form input[name=name] + div').remove();
+                $('#add_form input[name=name]').after('\<div>\<span class="ji-check ji-red" uk-icon="icon: close">\</span>\</div>');                
+            }
+        }];        
+    })
     ji.use(function(){
         return ["listener", "#add_form #submit_b", "click", function(){
             let cname = $('#add_form input[name=cname]').val();

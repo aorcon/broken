@@ -13,11 +13,12 @@
 {% block body %}
         <div class="uk-offcanvas-content">
             <div id="navbar" class="ji-navbar-container uk-navbar-container uk-background-primary uk-navbar-transparent uk-light" uk-sticky="media: 960">
-                <div class="uk-container uk-container-expand">
+                <div class="uk-container">
                     <nav class=""  uk-navbar="boundary-align: true; align: right;">    
                         <div class="uk-navbar-left">
+                                <img src="/i/icon/logo1.png" class="uk-margin-small-right uk-visible@m">
                             <a href="javascript:;" class="uk-navbar-item uk-logo">
-                                <img src="/i/icon/logo1.png" class="uk-margin-small-right">
+                            <img src="/i/icon/logo2.png" class="uk-margin-small-right uk-hidden@m">
                                 &nbsp;&nbsp;会员管理系统
                             </a>
                         </div>
@@ -57,7 +58,7 @@
                 </div>
             </div>
             <div class="ji-content-container">
-                <div class="uk-container uk-container-expand">
+                <div class="uk-container">
                         <div class="ji-sidebar uk-visible@m">
         {% for menu in sidebar.menu %}
             {% if menu.type == "H3" %}
@@ -77,7 +78,7 @@
             {% endif %}
         {% endfor %}
                         </div>
-                        <div class="ji-main uk-section uk-section-default">
+                        <div class="ji-main uk-section uk-section-default uk-section-xsmall">
                             <div class="uk-container uk-container-small uk-position-relative">
                                 <div class="uk-container">
 {% block content %}

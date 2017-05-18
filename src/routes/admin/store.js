@@ -1,3 +1,6 @@
+/**
+ *  门店管理
+ */
 const router = require('koa-router')();
 const f = require('../../common/function');
 const Store = require('../../models/store');
@@ -34,10 +37,26 @@ router.post('/add', async (ctx, next) => {
     data.address = address;
     data.location = location;
     data.alias = alias;
-    let result = await store.createWithLogs(data);
-    // console.log(result);
+    let operater = ctx.session.user;
+    let result = await store.createWithLogs(data, operater);
+    console.log(result);
     ctx.body = result.result;
 })
+
+router.post('/checkname', async(ctx, next) => {
+    let name = ctx.request.body.name;
+    let store = await new Store().readOne({name:name});
+    let result = {result:"OK"};
+    if (store){
+        result = {result:"exist"};
+    }    
+    ctx.body = {
+        code: 200,
+        desc: "OK",
+        result: result
+    }
+})
+
 router.post('/source', async(ctx, next) => {
     await ctx.render('admin/store_source', {
 
